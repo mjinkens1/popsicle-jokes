@@ -28,7 +28,7 @@ function getRandomInt(max) {
 
 function urlToClipboard() {
   var copyText = document.createElement('textarea');
-  copyText.value = 'https://s.codepen.io/MJ87/debug/ZRbjzo/dGMXWdWgvvmk';
+  copyText.value = 'http://popsicle-jokes.com/';
   document.body.appendChild(copyText);
   copyText.select();
   document.execCommand("copy");
@@ -92,7 +92,7 @@ class Social extends React.Component {
           <div className='tooltip-text'>SHARE<br/>ON<br/>FACEBOOK</div>
         </div>
         <div className='social-item'>
-          <a href={'https://twitter.com/intent/tweet?&text=' + encodeURIComponent('https://s.codepen.io/MJ87/debug/ZRbjzo/dGMXWdWgvvmk')}
+          <a href={'https://twitter.com/intent/tweet?&text=' + encodeURIComponent('http://popsicle-jokes.com/')}
              className="fab fa-fw fa-twitter" onClick={this.props.handleClick}></a>
           <div className='tooltip-text'>SHARE<br/>ON<br/>TWITTER</div>
         </div>
