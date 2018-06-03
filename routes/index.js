@@ -3,7 +3,12 @@ const router = express.Router();
 const path = require('path');
 const Content = require('../models/content');
 
-/* GET home page. */
+
+router.get('/', function (req, res) {
+  console.log(path.join(__dirname, '/../build', 'index.html'))
+  res.sendFile(path.join(__dirname, '/../build', 'index.html'));
+});
+
 router.get('/data', function(req, res, next) {
   Content.find(req.body, function(err, content) {
     if(err){

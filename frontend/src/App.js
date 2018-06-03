@@ -161,7 +161,7 @@ class App extends React.Component {
         window.FB.ui({
         method: 'share',
         display: 'popup',
-        href: 'https://s.codepen.io/MJ87/debug/ZRbjzo/dGMXWdWgvvmk',
+        href: 'http://popsicle-jokes.com/',
       }, function(response){});
     }
     else if (event.target.className.split(' ').indexOf('fa-link') !== -1) {
