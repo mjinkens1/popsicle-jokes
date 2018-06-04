@@ -34,7 +34,6 @@ app.use(bodyParser.urlencoded({
 }));
 // app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.static(path.join(__dirname, '/frontend/build')));
-console.log('app', path.join(__dirname, '/frontend/build'))
 
 app.use('/', indexRouter);
 

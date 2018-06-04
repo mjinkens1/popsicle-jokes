@@ -5,7 +5,6 @@ const Content = require('../models/content');
 
 
 router.get('/', function (req, res) {
-  console.log(path.join(__dirname, '/../build', 'index.html'))
   res.sendFile(path.join(__dirname, '/../build', 'index.html'));
 });
 
