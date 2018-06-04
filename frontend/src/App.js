@@ -16,7 +16,7 @@ window.fbAsyncInit = function() {
    var js, fjs = d.getElementsByTagName(s)[0];
    if (d.getElementById(id)) {return;}
    js = d.createElement(s); js.id = id;
-   js.src = "https://connect.facebook.net/en_US/sdk.js";
+   js.src = 'https://connect.facebook.net/en_US/sdk.js';
    fjs.parentNode.insertBefore(js, fjs);
  }(document, 'script', 'facebook-jssdk'));
 
@@ -31,8 +31,13 @@ function urlToClipboard() {
   copyText.value = 'http://popsicle-jokes.com/';
   document.body.appendChild(copyText);
   copyText.select();
-  document.execCommand("copy");
+  document.execCommand('copy');
   document.body.removeChild(copyText);
+};
+
+function validateEmail(email) {
+  var regex = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+  return regex.test(String(email).toLowerCase());
 };
 
 // Declare React components ===============================================================================================================================
@@ -51,15 +56,15 @@ class Controls extends React.Component {
     <div className='controls'>
       <div className='controls-item'>
         <div className='tooltip-text'>SHOW<br/>PUNCHLINE</div>
-        <a href='' className="fas fa-fw fa-play" onClick={this.props.handleClick}></a>
+        <a href='' className='fas fa-fw fa-play' onClick={this.props.handleClick}></a>
       </div>
       <div className='controls-item'>
         <div className='tooltip-text'>NEW JOKE</div>
-        <a href='' className="fas fa-fw fa-step-forward" onClick={this.props.handleClick}></a>
+        <a href='' className='fas fa-fw fa-step-forward' onClick={this.props.handleClick}></a>
       </div>
       <div className='controls-item'>
         <div className='tooltip-text'>RESET</div>
-        <a href='' className="fas fa-fw fa-undo-alt" onClick={this.props.handleClick}></a>
+        <a href='' className='fas fa-fw fa-undo-alt' onClick={this.props.handleClick}></a>
       </div>
 
     </div>
@@ -88,17 +93,44 @@ class Social extends React.Component {
     return (
       <div className='social'>
         <div className='social-item'>
-          <a href='' className="fab fa-fw fa-facebook-f" onClick={this.props.handleClick}></a>
+          <a href='' className='fab fa-fw fa-facebook-f' onClick={this.props.handleClick}></a>
           <div className='tooltip-text'>SHARE<br/>ON<br/>FACEBOOK</div>
         </div>
         <div className='social-item'>
           <a href={'https://twitter.com/intent/tweet?&text=' + encodeURIComponent('http://popsicle-jokes.com/')}
-             className="fab fa-fw fa-twitter" onClick={this.props.handleClick}></a>
+             className='fab fa-fw fa-twitter' onClick={this.props.handleClick}></a>
           <div className='tooltip-text'>SHARE<br/>ON<br/>TWITTER</div>
         </div>
         <div className='social-item'>
-          <a href='' className="fas fa-fw fa-link" onClick={this.props.handleClick}></a>
+          <a href='' className='fas fa-fw fa-link' onClick={this.props.handleClick}></a>
            {this.props.linkToolTip}
+        </div>
+      </div>
+    );
+  };
+};
+
+class SubmissionPopup extends React.Component {
+  render() {
+    return (
+      <div className={'submission ' + this.props.hidden}>
+        <form className='form-horizontal' name='myForm'>
+          <div className='form-group text-left'>
+            <label htmlFor='name-input'>NAME</label>
+            <input type='text' className='form-control' name='name-input' placeholder='' />
+          </div>
+          <div className='form-group text-left'>
+            <label htmlFor='email-input'>EMAIL</label>
+            <input type='email' className='form-control' name='email-input' placeholder='' />
+          </div>
+          <div className='form-group text-left'>
+            <label htmlFor='message-input'>MESSAGE</label>
+            <textarea className='form-control' placeholder='Enter joke(s) here' name='message-input'/>
+          </div>
+        </form>
+        <div>
+          <button type='submit' className='btn social mb-4' id='message'>Submit</button>
+          <button type='reset' className='btn social mb-4' id='message'>Submit</button>
         </div>
       </div>
     );
@@ -109,6 +141,7 @@ class App extends React.Component {
     constructor(props) {
     super(props);
     this.state = {
+      popupHidden: 'hidden',
       hidden: '',
       jokeArr: [],
       index: 0,
@@ -141,7 +174,7 @@ class App extends React.Component {
     if(event.target.className.split(' ').indexOf('fa-play') !== -1) {
       // keep punchline hidden until first reveal so it doesn't show during image loading
       if(this.state.punchline === '')
-        this.setState({punchline: this.state.jokeArr[this.state.index].content.punchline});
+        await this.setState({punchline: this.state.jokeArr[this.state.index].content.punchline});
       // hide popsicle to reveal punchline
       this.setState({hidden: 'hidden'});
     }
@@ -185,6 +218,9 @@ class App extends React.Component {
   render() {
     return (
       <div className='app'>
+        <SubmissionPopup
+          hidden={this.state.popupHidden}
+        />
         <Popsicle
           hidden={this.state.hidden}
           joke={this.state.joke}
