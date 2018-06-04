@@ -159,7 +159,7 @@ class App extends React.Component {
       params: {}
      })
      .then(function (response) {
-       var index = getRandomInt(response.data.length);
+       var index = getRandomInt(response.data.length - 1);
        currentComponent.setState({index: index});
        currentComponent.setState({jokeArr: response.data});
        currentComponent.setState({joke: currentComponent.state.jokeArr[index].content.joke});
@@ -182,10 +182,10 @@ class App extends React.Component {
       //unhide popsicle
       this.setState({hidden: ''});
       // get random joke
-      var index = getRandomInt(this.state.jokeArr.length);
+      var index = getRandomInt(this.state.jokeArr.length - 1);
       // make sure new index is different than current index
       while(index == this.state.index) {
-        index = getRandomInt(this.state.jokeArr.length);
+        index = getRandomInt(this.state.jokeArr.length - 1);
       };
 
       await this.setState({index: index});
