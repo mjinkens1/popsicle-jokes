@@ -122,10 +122,8 @@ class App extends React.Component {
 
   componentDidMount() {
     var currentComponent = this;
-
     axios.get('/data', {
-      params: {
-      }
+      params: {}
      })
      .then(function (response) {
        var index = getRandomInt(response.data.length);
@@ -138,21 +136,26 @@ class App extends React.Component {
      });
   }
 
-  handleClick(event) {
+  async handleClick(event) {
     event.preventDefault();
-
     if(event.target.className.split(' ').indexOf('fa-play') !== -1) {
-      // hide popsicle to reveal punchline
-      this.setState({hidden: 'hidden'});
+      // keep punchline hidden until first reveal so it doesn't show during image loading
       if(this.state.punchline === '')
         this.setState({punchline: this.state.jokeArr[this.state.index].content.punchline});
+      // hide popsicle to reveal punchline
+      this.setState({hidden: 'hidden'});
     }
     else if (event.target.className.split(' ').indexOf('fa-step-forward') !== -1) {
       //unhide popsicle
       this.setState({hidden: ''});
       // get random joke
       var index = getRandomInt(this.state.jokeArr.length);
-      this.setState({index: index});
+      // make sure new index is different than current index
+      while(index == this.state.index) {
+        index = getRandomInt(this.state.jokeArr.length);
+      };
+
+      await this.setState({index: index});
       this.setState({joke: this.state.jokeArr[this.state.index].content.joke});
       this.setState({punchline: this.state.jokeArr[this.state.index].content.punchline});
     }
