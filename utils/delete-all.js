@@ -12,9 +12,9 @@ db.once('connected', function () {
   Content.remove({})
   .then(function(err, obj) {
     if(err)
-      res.send(err);
+      console.log(err)
     if(!err)
-      res.send(obj);
+      console.log('items deleted')
   });
 });
 db.once('disconnected', function () {
