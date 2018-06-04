@@ -111,6 +111,7 @@ class App extends React.Component {
     this.state = {
       hidden: '',
       jokeArr: [],
+      index: 0,
       joke: '',
       punchline: '',
       linkToolTip: <div className='tooltip-text'>&nbsp;SHARE<br/>&nbsp;LINK</div>
@@ -128,9 +129,9 @@ class App extends React.Component {
      })
      .then(function (response) {
        var index = getRandomInt(response.data.length);
+       currentComponent.setState({index: index});
        currentComponent.setState({jokeArr: response.data});
        currentComponent.setState({joke: currentComponent.state.jokeArr[index].content.joke});
-       currentComponent.setState({punchline: currentComponent.state.jokeArr[index].content.punchline});
      })
      .catch(function (error) {
        console.log(error);
@@ -143,14 +144,17 @@ class App extends React.Component {
     if(event.target.className.split(' ').indexOf('fa-play') !== -1) {
       // hide popsicle to reveal punchline
       this.setState({hidden: 'hidden'});
+      if(this.state.punchline === '')
+        this.setState({punchline: this.state.jokeArr[this.state.index].content.punchline});
     }
     else if (event.target.className.split(' ').indexOf('fa-step-forward') !== -1) {
       //unhide popsicle
       this.setState({hidden: ''});
       // get random joke
       var index = getRandomInt(this.state.jokeArr.length);
-      this.setState({joke: this.state.jokeArr[index].content.joke});
-      this.setState({punchline: this.state.jokeArr[index].content.punchline});
+      this.setState({index: index});
+      this.setState({joke: this.state.jokeArr[this.state.index].content.joke});
+      this.setState({punchline: this.state.jokeArr[this.state.index].content.punchline});
     }
     else if (event.target.className.split(' ').indexOf('fa-undo-alt') !== -1) {
       // unhide popsicle without changing joke
