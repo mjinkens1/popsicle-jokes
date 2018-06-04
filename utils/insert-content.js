@@ -11,21 +11,21 @@ db.on('error', function (err) {
 db.once('connected', function () {
   console.log('Successfully connected to ' + configDB.url);
   content = [
-    // {'joke': 'WHICH PASTA HAS THE MOST COMEBACKS?',
-    // 'punchline': 'RETORT-ELLINI',
-    // 'nsfw': false},
-    // {'joke': 'WHAT DO YOU CALL AN INEXPERIENCED PIG?',
-    // 'punchline': 'A HAMETUER',
-    // 'nsfw': false},
-    // {'joke': "WHAT IS A BABY COW'S FAVORITE STIMULANT?",
-    // 'punchline': 'CALF-FEINNE',
-    // 'nsfw': false},
-    // {'joke': "WHERE DID NAPOLEON KEEP HIS ARMIES?",
-    // 'punchline': 'IN HIS SLEEVIES',
-    // 'nsfw': false},
-    // {'joke': "WHAT DID PEOPLE SAY ABOUT THE CAMPSITE ORGY?",
-    // 'punchline': 'IN WAS IN TENTS',
-    // 'nsfw': false},
+    {'joke': 'WHICH PASTA HAS THE MOST COMEBACKS?',
+    'punchline': 'RETORT-ELLINI',
+    'nsfw': false},
+    {'joke': 'WHAT DO YOU CALL AN INEXPERIENCED PIG?',
+    'punchline': 'A HAMETUER',
+    'nsfw': false},
+    {'joke': "WHAT IS A BABY COW'S FAVORITE STIMULANT?",
+    'punchline': 'CALF-FEINNE',
+    'nsfw': false},
+    {'joke': "WHERE DID NAPOLEON KEEP HIS ARMIES?",
+    'punchline': 'IN HIS SLEEVIES',
+    'nsfw': false},
+    {'joke': "WHAT DID PEOPLE SAY ABOUT THE CAMPSITE ORGY?",
+    'punchline': 'IN WAS IN TENTS',
+    'nsfw': true},
   ]
 
   var i;
