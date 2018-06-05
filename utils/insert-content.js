@@ -24,7 +24,7 @@ db.once('connected', function () {
     'punchline': 'IN HIS SLEEVIES',
     'nsfw': false},
     {'joke': "WHAT DID PEOPLE SAY ABOUT THE CAMPSITE ORGY?",
-    'punchline': 'IN WAS IN TENTS',
+    'punchline': 'IT WAS IN TENTS',
     'nsfw': true},
   ]
 
