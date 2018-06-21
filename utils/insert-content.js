@@ -30,7 +30,7 @@ db.once('connected', function () {
     'punchline': 'A SLOBBIT',
     'nsfw': false},
     {'joke': "HOW DO YOU TELL HOW HEAVY A CHILI PEPPER IS?",
-    'punchline': 'GIVE IT AWAY, GIVE IT AWAY GIVE IT AWAY NOW',
+    'punchline': 'GIVE IT AWAY, GIVE IT AWAY, GIVE IT AWAY NOW',
     'nsfw': false},
   ]
 
