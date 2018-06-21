@@ -13,7 +13,6 @@ router.get('/data', function(req, res, next) {
     if(err){
        console.error(err);
     } else{
-      // res.send('test res')
       res.send(content);
     };
   });

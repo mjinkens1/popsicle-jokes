@@ -26,6 +26,12 @@ db.once('connected', function () {
     {'joke': "WHAT DID PEOPLE SAY ABOUT THE CAMPSITE ORGY?",
     'punchline': 'IT WAS IN TENTS',
     'nsfw': true},
+    {'joke': "WHAT DO YOU CALL A MESSY PERSON WITH HAIRY FEET?",
+    'punchline': 'A SLOBBIT',
+    'nsfw': false},
+    {'joke': "HOW DO YOU TELL HOW HEAVY A CHILI PEPPER IS?",
+    'punchline': 'GIVE IT AWAY, GIVE IT AWAY GIVE IT AWAY NOW',
+    'nsfw': false},
   ]
 
   var i;
